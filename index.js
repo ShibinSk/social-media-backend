@@ -61,7 +61,14 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+    app.listen(3001, "localhost"); // or server.listen(3001, '0.0.0.0'); for all interfaces
+    app.on("listening", function () {
+      console.log(
+        "Express server started on port %s at %s",
+        server.address().port,
+        server.address().address
+      );
+    });
 
     /* ADD DATA ONE TIME */
     // User.insertMany(users);
